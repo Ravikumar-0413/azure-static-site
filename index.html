@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure DevOps Static Website Deployment</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav container">
+      <div class="logo">Azure<span>Deploy</span></div>
+      <a href="#pipeline" class="nav-link">View Pipeline</a>
+    </nav>
+    <div class="hero-content container">
+      <p class="eyebrow">AZURE DEVOPS • CLASSIC PIPELINE</p>
+      <h1>Static Website<br><span>Deployment Journey</span></h1>
+      <p class="hero-text">
+        A simple HTML, CSS and JavaScript website deployed automatically
+        from Azure Repos through a Classic Build Pipeline and Release Pipeline
+        into Azure App Service.
+      </p>
+      <a href="#pipeline" class="btn">Explore the Process ↓</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container" id="pipeline">
+      <div class="section-heading">
+        <p class="eyebrow">END-TO-END FLOW</p>
+        <h2>From source code to production</h2>
+        <p>Every stage below represents a real part of the deployment workflow.</p>
+      </div>
+
+      <div class="pipeline">
+        <article class="step">
+          <div class="number">01</div>
+          <div>
+            <span class="tag">SOURCE</span>
+            <h3>Azure Repos</h3>
+            <p>Store index.html, CSS, JavaScript and images in the Git repository.</p>
+          </div>
+        </article>
+
+        <div class="connector">↓</div>
+
+        <article class="step">
+          <div class="number">02</div>
+          <div>
+            <span class="tag">BUILD</span>
+            <h3>Classic Build Pipeline</h3>
+            <p>Use the Classic Editor to copy website files into the artifact staging directory.</p>
+          </div>
+        </article>
+
+        <div class="connector">↓</div>
+
+        <article class="step">
+          <div class="number">03</div>
+          <div>
+            <span class="tag">ARTIFACT</span>
+            <h3>Publish Build Artifact</h3>
+            <p>Publish the website as a <strong>drop</strong> artifact for the release pipeline.</p>
+          </div>
+        </article>
+
+        <div class="connector">↓</div>
+
+        <article class="step">
+          <div class="number">04</div>
+          <div>
+            <span class="tag">RELEASE</span>
+            <h3>Classic Release Pipeline</h3>
+            <p>Download the build artifact and pass it to the Azure App Service deployment task.</p>
+          </div>
+        </article>
+
+        <div class="connector">↓</div>
+
+        <article class="step final-step">
+          <div class="number">05</div>
+          <div>
+            <span class="tag">PRODUCTION</span>
+            <h3>Azure App Service</h3>
+            <p>The HTML, CSS and JavaScript files are hosted and served through an Azure web app.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-heading light">
+          <p class="eyebrow">PROJECT STRUCTURE</p>
+          <h2>What gets deployed?</h2>
+        </div>
+
+        <div class="code-card">
+<pre><code>azure-static-site/
+├── index.html
+├── css/
+│   └── style.css
+└── js/
+    └── script.js</code></pre>
+        </div>
+
+        <div class="grid">
+          <div class="info-card">
+            <h3>Build task</h3>
+            <p>Copy Files → <code>$(Build.ArtifactStagingDirectory)</code></p>
+          </div>
+          <div class="info-card">
+            <h3>Artifact</h3>
+            <p>Publish Build Artifacts → <code>drop</code></p>
+          </div>
+          <div class="info-card">
+            <h3>Deployment</h3>
+            <p>Azure App Service Deploy → your App Service</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading">
+        <p class="eyebrow">AZURE RESOURCES</p>
+        <h2>What you need</h2>
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource"><strong>01</strong><h3>Azure Subscription</h3><p>Provides the Azure resources and billing boundary.</p></div>
+        <div class="resource"><strong>02</strong><h3>App Service</h3><p>Hosts the deployed static website.</p></div>
+        <div class="resource"><strong>03</strong><h3>Azure DevOps Project</h3><p>Contains the repository and Classic pipelines.</p></div>
+        <div class="resource"><strong>04</strong><h3>Service Connection</h3><p>Authorizes Azure DevOps to deploy to Azure.</p></div>
+        <div class="resource"><strong>05</strong><h3>Build Agent</h3><p>Runs the Classic Build Pipeline tasks.</p></div>
+        <div class="resource"><strong>06</strong><h3>Build Artifact</h3><p>Carries the website from Build to Release.</p></div>
+      </div>
+    </section>
+
+    <section class="section demo-section">
+      <div class="container demo">
+        <div>
+          <p class="eyebrow">JAVASCRIPT DEMO</p>
+          <h2>Test the deployed page</h2>
+          <p>This button proves JavaScript is being served along with your HTML and CSS.</p>
+        </div>
+        <div class="demo-box">
+          <button id="deployBtn" class="btn">Simulate Deployment</button>
+          <p id="status" class="status">Ready to deploy.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div><strong>AzureDeploy</strong><p>HTML • CSS • JavaScript • Azure DevOps</p></div>
+      <p>Classic Build → Artifact → Classic Release → App Service</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
